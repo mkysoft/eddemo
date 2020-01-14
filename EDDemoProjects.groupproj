@@ -6,12 +6,6 @@
         <Projects Include="EDDemo.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="ED.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="EDTest.dproj">
-            <Dependencies>ED.dproj</Dependencies>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -29,32 +23,14 @@
     <Target Name="EDDemo:Make">
         <MSBuild Projects="EDDemo.dproj" Targets="Make"/>
     </Target>
-    <Target Name="ED">
-        <MSBuild Projects="ED.dproj"/>
-    </Target>
-    <Target Name="ED:Clean">
-        <MSBuild Projects="ED.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ED:Make">
-        <MSBuild Projects="ED.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="EDTest" DependsOnTargets="ED">
-        <MSBuild Projects="EDTest.dproj"/>
-    </Target>
-    <Target Name="EDTest:Clean" DependsOnTargets="ED:Clean">
-        <MSBuild Projects="EDTest.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="EDTest:Make" DependsOnTargets="ED:Make">
-        <MSBuild Projects="EDTest.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="EDDemo;ED;EDTest"/>
+        <CallTarget Targets="EDDemo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="EDDemo:Clean;ED:Clean;EDTest:Clean"/>
+        <CallTarget Targets="EDDemo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="EDDemo:Make;ED:Make;EDTest:Make"/>
+        <CallTarget Targets="EDDemo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
